@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <script type="module" src="db.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人博客</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dynamic-background">
+      <!-- 星光效果 -->
+      <div class="starlight">
+        <div class="star-group">
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+        </div>
+        <!-- 流星效果 -->
+        <div class="shooting-stars">
+          <div class="shooting-star"></div>
+          <div class="shooting-star"></div>
+          <div class="shooting-star"></div>
+        </div>
+      </div>
+
+      <!-- 动态光斑 -->
+      <div class="light-spots">
+        <div class="light-spot"></div>
+        <div class="light-spot"></div>
+        <div class="light-spot"></div>
+        <div class="light-spot"></div>
+      </div>
+
+      <!-- 动态星星 -->
+      <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </div>
+
+      <!-- 动态波浪 -->
+      <div class="waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+      </div>
+    </div>
+
+    <div class="geometric-background">
+      <!-- 浮动圆形组 -->
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+
+      <!-- 浮动方形组 -->
+      <div class="floating-square"></div>
+      <div class="floating-square"></div>
+      <div class="floating-square"></div>
+
+      <!-- 浮动三角形组 -->
+      <div class="floating-triangle"></div>
+      <div class="floating-triangle"></div>
+      <div class="floating-triangle"></div>
+
+      <!-- 渐变线条 -->
+      <div class="gradient-line"></div>
+      <div class="gradient-line"></div>
+      <div class="gradient-line"></div>
+    </div>
+
+    <canvas id="particles"></canvas>
+    <canvas id="flowers"></canvas>
+
+    <div class="decorative-plants">
+      <!-- 左侧植物 -->
+      <div class="left-plants">
+        <div class="plant plant-1">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="plant plant-2">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="plant plant-3">
+          <i class="fas fa-tree"></i>
+        </div>
+        <div class="vine vine-left">
+          <i class="fas fa-wind"></i>
+        </div>
+      </div>
+
+      <!-- 右侧植物 -->
+      <div class="right-plants">
+        <div class="plant plant-4">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="plant plant-5">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="plant plant-6">
+          <i class="fas fa-tree"></i>
+        </div>
+        <div class="vine vine-right">
+          <i class="fas fa-wind"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- 个人信息侧边栏 -->
+      <aside class="profile-sidebar">
+        <div class="profile-card">
+          <div class="profile-image">
+            <img id="avatarImg" src="./img/IMG_0192.JPG" alt="个人头像" />
+            <div class="avatar-controls">
+              <button id="changeAvatarBtn" class="avatar-btn">
+                <i class="fas fa-camera"></i> 更换头像
+              </button>
+              <input
+                type="file"
+                id="avatarInput"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+          </div>
+          <div class="profile-info" id="profileInfo">
+            <h2>关于我</h2>
+            <p class="profile-description">热爱编程与设计的开发者</p>
+
+            <!-- 添加个性签名 -->
+            <div class="profile-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>编程改变世界，创意成就未来</p>
+              <i class="fas fa-quote-right"></i>
+            </div>
+
+            <!-- 修改兴趣爱好部分 -->
+            <div class="profile-interests">
+              <h3><i class="fas fa-heart"></i> 兴趣爱好</h3>
+              <div class="interest-tags">
+                <span class="interest-tag"
+                  ><i class="fas fa-code"></i> 编程</span
+                >
+                <span class="interest-tag"
+                  ><i class="fas fa-video"></i> 视频制作</span
+                >
+                <span class="interest-tag"
+                  ><i class="fas fa-paint-brush"></i> 平面设计</span
+                >
+                <span class="interest-tag"
+                  ><i class="fas fa-cube"></i> 3D建模</span
+                >
+                <span class="interest-tag"
+                  ><i class="fas fa-film"></i> 影视后期</span
+                >
+                <span class="interest-tag"
+                  ><i class="fas fa-vector-square"></i> 矢量设计</span
+                >
+              </div>
+            </div>
+
+            <!-- 添加技能进度条 -->
+            <div class="profile-skills">
+              <h3><i class="fas fa-laptop-code"></i> 技能掌握</h3>
+              <div class="skill-item">
+                <span>前端开发</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span>后端开发</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 添加社交链接 -->
+            <div class="social-links">
+              <a href="#" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="social-link" title="微信">
+                <i class="fab fa-weixin"></i>
+              </a>
+              <a href="#" class="social-link" title="QQ">
+                <i class="fab fa-qq"></i>
+              </a>
+              <a href="#" class="social-link" title="邮箱">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+
+            <!-- 添加访问统计 -->
+            <div class="profile-stats">
+              <div class="stat-item">
+                <span class="stat-number">108</span>
+                <span class="stat-label">文章</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">1.2k</span>
+                <span class="stat-label">访问</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">256</span>
+                <span class="stat-label">评论</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 主要容区 -->
+      <main class="main-content">
+        <!-- 导航栏 -->
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#home" class="active">首页</a></li>
+            <li><a href="ziyuan.html">资源</a></li>
+            <li><a href="portfolio.html">作品集</a></li>
+          </ul>
+        </nav>
+
+        <!-- 搜索栏 -->
+        <div class="search-container floating">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索..." />
+            <div class="search-buttons">
+              <button class="search-btn baidu" onclick="searchBaidu()">
+                <img src="https://www.baidu.com/favicon.ico" alt="百度" />
+              </button>
+              <button class="search-btn bing" onclick="searchBing()">
+                <img src="https://www.bing.com/favicon.ico" alt="必应" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 轮播图 -->
+        <div class="carousel floating">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./img/IMG_0173.JPG" alt="Slide 1" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0166.JPG" alt="Slide 2" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0172.JPG" alt="Slide 3" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0174.JPG" alt="Slide 4" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0178.JPG" alt="Slide 5" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0176.JPG" alt="Slide 6" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0182.JPG" alt="Slide 7" />
+            </div>
+            <div class="carousel-item">
+              <img src="./img/IMG_0187.JPG" alt="Slide 8" />
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-prev">&lt;</button>
+            <button class="carousel-next">&gt;</button>
+          </div>
+        </div>
+
+        <!-- 设计技能部分 -->
+        <div class="design-skills">
+          <h2 class="section-title">设计技能</h2>
+          <div class="design-grid">
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-film"></i>
+              </div>
+              <h3>After Effects</h3>
+              <p>动态图形设计与特效合成</p>
+              <div class="design-preview">
+                <img src="./img/ae-preview.jpg" alt="AE作品示例" />
+                <div class="preview-overlay">
+                  <span>动态图形设计作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">MG动画</span>
+                <span class="software-tag">视觉特效</span>
+                <span class="software-tag">粒子特效</span>
+                <span class="software-tag">表达式</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> Element 3D 三维动画</li>
+                  <li><i class="fas fa-check"></i> Trapcode Suite 粒子特效</li>
+                  <li><i class="fas fa-check"></i> 表达式动画编程</li>
+                  <li><i class="fas fa-check"></i> 角色动画绑定</li>
+                  <li><i class="fas fa-check"></i> 栏目包装设计</li>
+                  <li><i class="fas fa-check"></i> Logo动画设计</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-video"></i>
+              </div>
+              <h3>Premiere Pro</h3>
+              <p>专业视频剪辑与编辑</p>
+              <div class="design-preview">
+                <img src="./img/pr-preview.jpg" alt="PR作品示例" />
+                <div class="preview-overlay">
+                  <span>视频剪辑作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">视频剪辑</span>
+                <span class="software-tag">转场特效</span>
+                <span class="software-tag">音频处理</span>
+                <span class="software-tag">调色</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> 多机位摄像剪辑</li>
+                  <li><i class="fas fa-check"></i> Lumetri专业调色</li>
+                  <li><i class="fas fa-check"></i> 音频后期处理</li>
+                  <li><i class="fas fa-check"></i> 字幕动画制作</li>
+                  <li><i class="fas fa-check"></i> 转场特效设计</li>
+                  <li><i class="fas fa-check"></i> 视频节奏控制</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-cube"></i>
+              </div>
+              <h3>Cinema 4D</h3>
+              <p>3D建模与动画制作</p>
+              <div class="design-preview">
+                <img src="./img/c4d-preview.jpg" alt="C4D作品示例" />
+                <div class="preview-overlay">
+                  <span>3D建模作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">建模</span>
+                <span class="software-tag">质</span>
+                <span class="software-tag">动画</span>
+                <span class="software-tag">渲</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> Octane物理渲染</li>
+                  <li><i class="fas fa-check"></i> 动力学系统模拟</li>
+                  <li><i class="fas fa-check"></i> 角色动画制作</li>
+                  <li><i class="fas fa-check"></i> 粒子系统设计</li>
+                  <li><i class="fas fa-check"></i> 材质灯光调节</li>
+                  <li><i class="fas fa-check"></i> 场景布局搭建</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-bezier-curve"></i>
+              </div>
+              <h3>Illustrator</h3>
+              <p>矢量图形与Logo设计</p>
+              <div class="design-preview">
+                <img src="./img/ai-preview.jpg" alt="AI作品示例" />
+                <div class="preview-overlay">
+                  <span>矢量设计作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 88%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">Logo</span>
+                <span class="software-tag">插画</span>
+                <span class="software-tag">图标</span>
+                <span class="software-tag">版式</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> 品牌VI设计</li>
+                  <li><i class="fas fa-check"></i> 矢量插画创作</li>
+                  <li><i class="fas fa-check"></i> 图标系统设计</li>
+                  <li><i class="fas fa-check"></i> 包装设计制作</li>
+                  <li><i class="fas fa-check"></i> 海报版式设计</li>
+                  <li><i class="fas fa-check"></i> 字体设计创作</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-image"></i>
+              </div>
+              <h3>Photoshop</h3>
+              <p>图像处理与成创作</p>
+              <div class="design-preview">
+                <img src="./img/ps-preview.jpg" alt="PS作品示例" />
+                <div class="preview-overlay">
+                  <span>图像处理作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 92%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">修图</span>
+                <span class="software-tag">合成</span>
+                <span class="software-tag">调色</span>
+                <span class="software-tag">绘</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> 人像精修美化</li>
+                  <li><i class="fas fa-check"></i> 商业广告修图</li>
+                  <li><i class="fas fa-check"></i> 创意场景合成</li>
+                  <li><i class="fas fa-check"></i> 数字绘画创作</li>
+                  <li><i class="fas fa-check"></i> 质感调色处理</li>
+                  <li><i class="fas fa-check"></i> 特效合成制作</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-palette"></i>
+              </div>
+              <h3>DaVinci Resolve</h3>
+              <p>专业视频调色与剪辑</p>
+              <div class="design-preview">
+                <img src="./img/davinci-preview.jpg" alt="达奇作品示例" />
+                <div class="preview-overlay">
+                  <span>视频调色作品</span>
+                </div>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">调色</span>
+                <span class="software-tag">剪辑</span>
+                <span class="software-tag">特效</span>
+                <span class="software-tag">音频</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> 电影级别调色</li>
+                  <li><i class="fas fa-check"></i> 节点工作流程</li>
+                  <li><i class="fas fa-check"></i> Fusion特效</li>
+                  <li><i class="fas fa-check"></i> Fairlight音频</li>
+                  <li><i class="fas fa-check"></i> 场景色彩匹配</li>
+                  <li><i class="fas fa-check"></i> HDR视频制作</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="design-card">
+              <div class="design-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h3>站工具</h3>
+              <p>网站设计与发工具</p>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+              <div class="software-tags">
+                <span class="software-tag">WordPress</span>
+                <span class="software-tag">Webflow</span>
+                <span class="software-tag">Wix</span>
+                <span class="software-tag">Figma</span>
+              </div>
+              <div class="software-details">
+                <ul>
+                  <li><i class="fas fa-check"></i> WordPress主题开发</li>
+                  <li><i class="fas fa-check"></i> Webflow响应式设计</li>
+                  <li><i class="fas fa-check"></i> Figma原型设计</li>
+                  <li><i class="fas fa-check"></i> UI/UX设计</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 添加最新动态区域 -->
+        <div class="recent-activities">
+          <h2 class="section-title">最新动态</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-edit"></i>
+              </div>
+              <div class="activity-content">
+                <h4>发布新文章</h4>
+                <p>《Vue3 组件库开发实战》</p>
+                <span class="activity-time">2小时前</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-comment-dots"></i>
+              </div>
+              <div class="activity-content">
+                <h4>收到新评论</h4>
+                <p>在《React Hooks 最佳实践》中</p>
+                <span class="activity-time">4小时前</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="activity-content">
+                <h4>文章被收藏</h4>
+                <p>《TypeScript 级技巧》</p>
+                <span class="activity-time">昨天</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目展区 -->
+        <div class="projects-section">
+          <h2 class="section-title">精选项目</h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="path/to/project1.jpg" alt="项目预览" />
+              </div>
+              <div class="project-content">
+                <h3>个人博系统</h3>
+                <p>基于Vue3和Node.js的现代化博客系统</p>
+                <div class="project-tags">
+                  <span class="tag">Vue3</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">MongoDB</span>
+                </div>
+              </div>
+            </div>
+            <!-- 更多项目卡片 -->
+          </div>
+        </div>
+
+        <!-- 技能展示区 -->
+        <div class="skills-section">
+          <h2 class="section-title">技能栈</h2>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+              <div class="skill-level">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <!-- 更多技能卡片 -->
+          </div>
+        </div>
+
+        <!-- 时间轴 -->
+        <div class="timeline-section">
+          <h2 class="section-title">成长历程</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2024</h3>
+                <p>开始个人博客项目开发</p>
+                <p>学习前端开发技术栈</p>
+                <span class="timeline-date">2024年1月</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2023</h3>
+                <p>参与多个开源项目</p>
+                <p>掌握React和Vue框架</p>
+                <span class="timeline-date">2023年8月</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2023</h3>
+                <p>完成第一个完整的Web应用</p>
+                <p>开始系统学习JavaScript</p>
+                <span class="timeline-date">2023年3月</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2022</h3>
+                <p>接触Web开发</p>
+                <p>学习HTML和CSS基础</p>
+                <span class="timeline-date">2022年9月</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>2022</h3>
+                <p>开始编程之旅</p>
+                <p>学习Python基础</p>
+                <span class="timeline-date">2022年3月</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section id="about">
+          <h2>关于我</h2>
+          <p>欢迎来到我的个人博客！这里是我分享编程、设计和创意项目的地方。我热爱技术，并希望通过这个平台与大家分享我的经验和见解。</p>
+        </section>
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>联系方式</h3>
+          <p><i class="fas fa-envelope"></i> email@example.com</p>
+          <p><i class="fab fa-github"></i> github.com/username</p>
+        </div>
+        <div class="footer-section">
+          <h3>快速链接</h3>
+          <ul>
+            <li><a href="#blog">博客文章</a></li>
+            <li><a href="#projects">项目展示</a></li>
+            <li><a href="#about">关于我</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>订阅更新</h3>
+          <div class="subscribe-form">
+            <input type="email" placeholder="输入箱地址..." />
+            <button type="submit">订阅</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 个人博客. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="particles.js"></script>
+    <script src="flowers.js"></script>
+    <script src="script.js"></script>
+
+    <!-- 音频元素 -->
+    <audio id="background-music" src="yinyue.mp3" loop></audio>
+
+    <!-- 提示用户点击播放 -->
+    <button onclick="playMusic()">点击播放音乐</button>
+
+    <script>
+        function playMusic() {
+            const audio = document.getElementById('background-music');
+            audio.play().catch(error => {
+                console.log('自动播放被阻止:', error);
+            });
+        }
+
+        // 尝试自动播放（可能会被浏览器阻止）
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('background-music');
+            audio.play().catch(error => {
+                console.log('自动播放被阻止:', error);
+            });
+        });
+    </script>
+  </body>
+</html>
