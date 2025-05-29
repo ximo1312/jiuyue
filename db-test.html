@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数据库测试</title>
+  <script type="module">
+    import { addData, getData } from './db.js';
+
+    // 测试添加数据
+    addData({ name: '测试数据', value: '123' });
+
+    // 测试获取数据
+    getData(1, (data) => {
+      console.log('获取到的数据:', data);
+    });
+  </script>
+</head>
+<body>
+  <h1>数据库测试页面</h1>
+  <p>打开开发者工具查看控制台输出</p>
+</body>
+</html>

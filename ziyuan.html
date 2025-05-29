@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>资源中心</title>
+    <link rel="stylesheet" href="stylesss.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* 返回按钮样式 */
+      .back-home {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .back-home:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+
+      .back-home i {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particles"></canvas>
+
+    <!-- 返回首页按钮 -->
+    <button class="back-home" onclick="window.location.href='index.html'">
+      <i class="fas fa-arrow-left"></i>
+      返回首页
+    </button>
+
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-cubes"></i> 资源中心</h1>
+        <p class="subtitle">
+          <i class="fas fa-star"></i> 精选优质资源，助力创作
+        </p>
+        <div id="admin-panel" class="admin-panel">
+          <button id="login-btn" class="glow-button">
+            <i class="fas fa-user-shield"></i> 管理员登录
+          </button>
+          <div id="admin-controls" class="hidden">
+            <button id="add-item-btn" class="glow-button">
+              <i class="fas fa-plus-circle"></i> 添加新资源
+            </button>
+            <button id="delete-all-btn" class="glow-button danger">
+              <i class="fas fa-trash-alt"></i> 一键删除
+            </button>
+            <button id="logout-btn" class="glow-button">
+              <i class="fas fa-sign-out-alt"></i> 退出登录
+            </button>
+            <div class="admin-mode">
+              <label class="switch">
+                <input type="checkbox" id="edit-mode-toggle" />
+                <span class="slider round"></span>
+              </label>
+              <span><i class="fas fa-edit"></i> 编辑模式</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="categories">
+          <h2><i class="fas fa-th-large"></i> 分类导航</h2>
+          <ul>
+            <li>
+              <a href="#software" class="category-link">
+                <i class="fas fa-laptop-code"></i> 软件
+              </a>
+            </li>
+            <li>
+              <a href="#plugins" class="category-link">
+                <i class="fas fa-puzzle-piece"></i> 插件
+              </a>
+            </li>
+            <li>
+              <a href="#free-sites" class="category-link">
+                <i class="fas fa-globe-americas"></i> 免费网站
+              </a>
+            </li>
+            <li>
+              <a href="#websites" class="category-link">
+                <i class="fas fa-link"></i> 网站
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="items-container">
+          <section id="software" class="item-section">
+            <h2><i class="fas fa-laptop-code"></i> 软件列表</h2>
+            <div class="items-grid" id="software-grid">
+              <!-- 软件项目将通过JavaScript动态添加 -->
+            </div>
+          </section>
+
+          <section id="plugins" class="item-section">
+            <h2><i class="fas fa-puzzle-piece"></i> 插件列表</h2>
+            <div class="items-grid" id="plugins-grid">
+              <!-- 插件项目将通过JavaScript动态添加 -->
+            </div>
+          </section>
+
+          <section id="free-sites" class="item-section">
+            <h2><i class="fas fa-globe-americas"></i> 免费网站列表</h2>
+            <div class="items-grid" id="freeSites-grid">
+              <!-- 免费网站项目将通过JavaScript动态添加 -->
+            </div>
+          </section>
+
+          <section id="websites" class="item-section">
+            <h2><i class="fas fa-link"></i> 网站列表</h2>
+            <div class="items-grid" id="websites-grid">
+              <!-- 网站项目将通过JavaScript动态添加 -->
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="particless.js"></script>
+    <script src="scriptt.js"></script>
+  </body>
+</html>
